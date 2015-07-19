@@ -1,0 +1,24 @@
+{
+  "name": "Durd",
+  "version": "1.0.0",
+  "description": "Talk to, role-play with, and rate strangers!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DurdChat/DurdChat.git"
+  },
+  "author": "Peter Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DurdChat/DurdChat/issues"
+  },
+  "homepage": "https://github.com/DurdChat/DurdChat",
+  "dependencies": {
+    "express": "^4.13.1",
+    "socket.io": "^1.3.6"
+  }
+}
