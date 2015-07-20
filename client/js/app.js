@@ -108,6 +108,12 @@ $(document).ready(function() {
             connected = false;
         }
     });
+    
+    window.onbeforeunload = function(e) {
+        if(connected) {
+            socket.emit('chatDisconnect');
+        }
+    };
 });
 
 function reconnect() {

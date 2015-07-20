@@ -99,9 +99,6 @@ io.on('connection', function (socket) {
       console.log('Users online: ' + usersOnline);
       removeFromWaitinglist(socket);
       console.log('User exited and removed from waitinglist.');
-      
-      if(socket.partner !== null)
-        socket.partner.emit('partnerDisconnected');
     });
     
     socket.on('removeFromWaitinglist', function() {
