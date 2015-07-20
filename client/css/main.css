@@ -1,6 +1,7 @@
 html, body {
 	margin: 0; padding: 0;
 	width: 100%;
+	height: 100%;
 	background-color: #222;
 	
 	color: #EEE;
@@ -26,6 +27,9 @@ header {
     padding-left: 0.4em;
     padding-right: 1.2em;
     color: #FF7D00;
+}
+#logo:hover {
+    cursor: pointer;
 }
 #tagline {
     margin-top: 0.25em;
@@ -60,11 +64,78 @@ header {
     margin-bottom: 2em;
     vertical-align: middle;
 }
-#roleplay-text {
-    color: #FF2D28;
+#disconnect {
+    padding: 0.4em;
+    color: #000;
+    font-size: 1em;
+    border: none;
+    display: inline-block;
+    background-color: #D4D4CC;
+    
+    -webkit-transition: background-color 500ms ease;
+    -moz-transition: background-color 500ms ease;
+    -o-transition: background-color 500ms ease;
+    transition: background-color 500ms ease;
 }
-#talk-text {
-    color: #44E0FF;
+#disconnect:hover {
+    cursor: pointer;
+    background-color: #FFF;
+}
+#roleplay-start, #talk-start {
+    padding: 1em;
+    margin-bottom: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    
+    -webkit-transition: padding 500ms ease;
+    -moz-transition: padding 500ms ease;
+    -o-transition: padding 500ms ease;
+    transition: padding 500ms ease;
+}
+#roleplay-start:hover, #talk-start:hover {
+    cursor: pointer;
+    padding: 1.35em;
+}
+#roleplay-start {
+    background-color: #FF605D;
+}
+#talk-start {
+    background-color: #737BF1;
+}
+
+#chat-page {
+    display: none;
+    text-align: center;
+    color: #FFF;
+    width: 100%;
+    height: 91%;
+    position: relative;
+}
+#chat-display {
+    padding-top: 0.2em;
+    padding-left: 1em;
+    text-align: left;
+    left: 1em; right: 1em; top: 1em; bottom: 4em;
+    background-color: #111;
+    position: absolute;
+    overflow-y: scroll;
+    
+    border-radius: 6px;
+}
+#input-wrapper {
+    left: 1em; right: 1em; bottom: 1em;
+    position: absolute;
+    clear: both;
+}
+#textbox-wrapper {
+    width: auto;
+    overflow: hidden;
+}
+#msg-input {
+    width: 95%;
 }
 input {
     padding: 0.2em;   
@@ -79,37 +150,21 @@ input {
 input:focus {
     border: 5px solid #888;
 }
-#start {
-    padding: 0.4em;
-    color: #000;
-    font-size: 1em;
-    border: none;
+#disconnect {
+    float: left;
+}
+
+.message {
+    max-width: 95%;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+    font-size: 0.8em;
+    word-wrap: break-word;
     display: inline-block;
-    background-color: #D4D4CC;
-    
-    -webkit-transition: background-color 500ms ease;
-    -moz-transition: background-color 500ms ease;
-    -o-transition: background-color 500ms ease;
-    transition: background-color 500ms ease;
 }
-#start:hover {
-    cursor: pointer;
-    background-color: #FFF;
+.you {
+    color: #F00;
 }
-#random {
-    padding: 1em;
-    margin-bottom: 2em;
-    border: none;
-    border-radius: 6px;
-    background-color: #CF95FF;
-    color: #000;
-    
-    -webkit-transition: padding 500ms ease;
-    -moz-transition: padding 500ms ease;
-    -o-transition: padding 500ms ease;
-    transition: padding 500ms ease;
-}
-#random:hover {
-    cursor: pointer;
-    padding: 1.35em;
+.other {
+    color: #00F;
 }
