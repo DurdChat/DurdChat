@@ -3,8 +3,10 @@ var connected = false;
 var rating;
 var partnerRating;
 var isRating;
+var page;
 
 $(document).ready(function() {
+    page = 'home';
     
     updateRating();
     socket.on('partnerFound', function(pr) {
@@ -25,6 +27,7 @@ $(document).ready(function() {
     });
     
     $('#logo').on('click', function() {
+        page = 'home';
         updateRating();
         clearMessages();
         
@@ -42,6 +45,7 @@ $(document).ready(function() {
     });
     
     $('#roleplay-start').on('click', function() {
+        page = 'rp';
         $('#intro-page').hide();
         $('#chat-page').show();
         isRating = false;
@@ -51,6 +55,7 @@ $(document).ready(function() {
     });
     
     $('#talk-start').on('click', function() {
+        page = 'talk';
         $('#intro-page').hide();
         $('#chat-page').show();
         isRating = false;
@@ -73,11 +78,22 @@ $(document).ready(function() {
                     socket.emit('sendRating', input);
                     $('#msg-input').val('');
                     isRating = false;
+                    $('#disconnect').hide();
+                    $('#reconnect').show();
+                    displayReconnectLink();
                 } else {
                     displaySystemMessage('Must be a number from -5 to 5.');
                 }
             }
         }
+    });
+    
+    $('#reconnect').on('click', function() {
+        reconnect();
+    });
+    
+    $('#reconnect-link').on('click', function() {
+        reconnect();
     });
     
     $('#disconnect').on('click', function() {
@@ -87,6 +103,20 @@ $(document).ready(function() {
         }
     });
 });
+
+function reconnect() {
+    $('#disconnect').show();
+    $('#reconnect').hide();
+    clearMessages();
+    displaySystemMessage('Searching for other...');
+    
+    socket.emit('removeFromWaitinglist');
+    if(page === 'rp') {
+        socket.emit('onRPWaiting');
+    } else {
+        socket.emit('onTalkWaiting');
+    }
+}
 
 function scrollDown() {
     $("#chat-display").scrollTop($("#chat-display")[0].scrollHeight);
@@ -104,6 +134,11 @@ function displayOtherMessage(message) {
 
 function displaySystemMessage(message) {
     $('#chat-display').append('<p class="message" style="font-weight: bold;">' + message +'</p><br>');
+    scrollDown();
+}
+
+function displayReconnectLink() {
+    $('#chat-display').append('<p class="message" style="font-weight: bold;"><a id="reconnect-link">Reconnect.</a></p><br>');
     scrollDown();
 }
 
