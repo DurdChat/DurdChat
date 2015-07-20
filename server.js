@@ -35,24 +35,24 @@ io.on('connection', function (socket) {
           minDifference = difference;
           index = i;
         }
+      }
         
-        //No partner found.
-        if(index === -1) {
-          console.log('No partner found. User added to RP waitinglist.');
-          rpWaitinglist.push(socket);
-        } else {
-          console.log('Pairing partners.');
-          //Pair partners.
-          var partner = rpWaitinglist[index];
-          //Remove partner from RP waitinglist.
-          rpWaitinglist.splice(index, 1);
-          removeFromWaitinglist(socket);
-          socket.partner = partner;
-          partner.partner = socket;
-          
-          socket.emit('partnerFound', partner.rating);
-          partner.emit('partnerFound', socket.rating);
-        }
+      //No partner found.
+      if(index === -1) {
+        console.log('No partner found. User added to RP waitinglist.');
+        rpWaitinglist.push(socket);
+      } else {
+        console.log('Pairing partners.');
+        //Pair partners.
+        var partner = rpWaitinglist[index];
+        //Remove partner from RP waitinglist.
+        rpWaitinglist.splice(index, 1);
+        removeFromWaitinglist(socket);
+        socket.partner = partner;
+        partner.partner = socket;
+        
+        socket.emit('partnerFound', partner.rating);
+        partner.emit('partnerFound', socket.rating);
       }
       
       console.log('Waitinglists updated.');
@@ -69,24 +69,24 @@ io.on('connection', function (socket) {
           minDifference = difference;
           index = i;
         }
+      }
         
-        //No partner found.
-        if(index === -1) {
-          console.log('No partner found. User added to talk waitinglist.');
-          talkWaitinglist.push(socket);
-        } else {
-          console.log('Pairing partners.');
-          //Pair partners.
-          var partner = talkWaitinglist[index];
-          //Remove partner from RP waitinglist.
-          talkWaitinglist.splice(index, 1);
-          removeFromWaitinglist(socket);
-          socket.partner = partner;
-          partner.partner = socket;
-          
-          socket.emit('partnerFound', partner.rating);
-          partner.emit('partnerFound', socket.rating);
-        }
+      //No partner found.
+      if(index === -1) {
+        console.log('No partner found. User added to talk waitinglist.');
+        talkWaitinglist.push(socket);
+      } else {
+        console.log('Pairing partners.');
+        //Pair partners.
+        var partner = talkWaitinglist[index];
+        //Remove partner from RP waitinglist.
+        talkWaitinglist.splice(index, 1);
+        removeFromWaitinglist(socket);
+        socket.partner = partner;
+        partner.partner = socket;
+        
+        socket.emit('partnerFound', partner.rating);
+        partner.emit('partnerFound', socket.rating);
       }
       
       console.log('Waitinglists updated.');
