@@ -119,6 +119,7 @@ io.on('connection', function (socket) {
     
     socket.on('sendRating', function(rating) {
       socket.partner.rating += rating;
+      socket.partner.emit('updateRating');
       socket.partner = null;
     });
 });

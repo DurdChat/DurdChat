@@ -9,6 +9,9 @@ $(document).ready(function() {
     page = 'home';
     
     updateRating();
+    socket.on('updateRating', function() {
+        updateRating();
+    });
     socket.on('partnerFound', function(pr) {
         connected = true;
         isRating = false;
@@ -45,6 +48,8 @@ $(document).ready(function() {
     });
     
     $('#roleplay-start').on('click', function() {
+        $('#disconnect').show();
+        $('#reconnect').hide();
         page = 'rp';
         $('#intro-page').hide();
         $('#chat-page').show();
@@ -55,6 +60,8 @@ $(document).ready(function() {
     });
     
     $('#talk-start').on('click', function() {
+        $('#disconnect').show();
+        $('#reconnect').hide();
         page = 'talk';
         $('#intro-page').hide();
         $('#chat-page').show();
@@ -80,7 +87,6 @@ $(document).ready(function() {
                     isRating = false;
                     $('#disconnect').hide();
                     $('#reconnect').show();
-                    displayReconnectLink();
                 } else {
                     displaySystemMessage('Must be a number from -5 to 5.');
                 }
@@ -134,11 +140,6 @@ function displayOtherMessage(message) {
 
 function displaySystemMessage(message) {
     $('#chat-display').append('<p class="message" style="font-weight: bold;">' + message +'</p><br>');
-    scrollDown();
-}
-
-function displayReconnectLink() {
-    $('#chat-display').append('<p class="message" style="font-weight: bold;"><a id="reconnect-link">Reconnect.</a></p><br>');
     scrollDown();
 }
 
