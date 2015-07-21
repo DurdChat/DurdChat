@@ -30,21 +30,23 @@ $(document).ready(function() {
     });
     
     $('#logo').on('click', function() {
-        page = 'home';
-        updateRating();
-        clearMessages();
-        
-        $('#intro-page').show();
-        $('#chat-page').hide();
-        
-        socket.emit('removeFromWaitinglist');
-        console.log('Sent waitinglist removal request.');
-        if(connected) {
-            socket.emit('chatDisconnect');
+        if(page !== 'close') {
+            page = 'home';
+            clearMessages();
+            
+            $('#intro-page').show();
+            $('#chat-page').hide();
+            
+            socket.emit('removeFromWaitinglist');
+            console.log('Sent waitinglist removal request.');
+            if(connected) {
+                socket.emit('chatDisconnect');
+            }
+            
+            connected = false;
+            isRating = false;
+            updateRating();
         }
-        
-        connected = false;
-        isRating = false;
     });
     
     $('#roleplay-start').on('click', function() {
@@ -98,15 +100,15 @@ $(document).ready(function() {
         reconnect();
     });
     
-    $('#reconnect-link').on('click', function() {
-        reconnect();
-    });
-    
     $('#disconnect').on('click', function() {
         if(connected) {
             onDisconnect();
             connected = false;
         }
+    });
+    
+    $('#privacy-link').on('click', function() {
+        window.open('privacy.html');
     });
     
     window.onbeforeunload = function(e) {
@@ -128,6 +130,7 @@ function reconnect() {
     } else {
         socket.emit('onTalkWaiting');
     }
+    updateRating();
 }
 
 function scrollDown() {
@@ -166,6 +169,24 @@ function updateRating() {
         $('#rating').text(r);
         rating = r;
     });
+    
+    if(rating <= 0) {
+        page = 'close';
+        clearMessages();
+        
+        socket.emit('removeFromWaitinglist');
+        console.log('Sent waitinglist removal request.');
+        if(connected) {
+            socket.emit('chatDisconnect');
+        }
+        
+        $('#intro-page').hide();
+        $('#chat-page').hide();
+        $('#close-page').show();
+        
+        connected = false;
+        isRating = false;
+    }
 }
 
 function validRating(input) {

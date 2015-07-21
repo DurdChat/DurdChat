@@ -62,6 +62,18 @@ header {
     text-align: left;
     text-indent: 2em;
 }
+#terms {
+    color: #888;
+    font-size: 0.6em;
+    margin-bottom: 1.6em;
+}
+#privacy-link {
+    color: #0000EE;
+    text-decoration: underline;
+}
+#privacy-link:hover {
+    cursor: pointer;
+}
 #wrapper {
     margin-bottom: 2em;
     vertical-align: middle;
@@ -86,9 +98,8 @@ header {
 }
 #roleplay-start, #talk-start {
     padding: 1em;
-    margin-bottom: 2em;
-    margin-left: 1em;
-    margin-right: 1em;
+    margin: 2em 1em;
+    margin-bottom: 0.8em;
     border: none;
     border-radius: 6px;
     color: #000;
@@ -120,6 +131,7 @@ header {
 }
 #chat-display {
     padding-top: 0.2em;
+    padding-bottom: 0.2em;
     padding-left: 1em;
     text-align: left;
     left: 1em; right: 1em; top: 1em; bottom: 4em;
@@ -175,4 +187,10 @@ input:focus {
 }
 .other {
     color: #00F;
+}
+
+#close-page {
+    display: none;
+    text-align: center;
+    padding-top: 2em;
 }
