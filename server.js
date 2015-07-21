@@ -99,6 +99,8 @@ io.on('connection', function (socket) {
       console.log('Users online: ' + usersOnline);
       removeFromWaitinglist(socket);
       console.log('User exited and removed from waitinglist.');
+      console.log('RP Waiting: ' + rpWaitinglist.length);
+      console.log('Talk Waiting: ' + talkWaitinglist.length);
     });
     
     socket.on('removeFromWaitinglist', function() {
